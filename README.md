@@ -68,9 +68,9 @@ public class SampleController : Controller
 
     public async Task<IActionResult> Enqueue()
     {
-        await _firebusClint.RegisterJobAsync<SampleService>(svc => svc.FooBar("baz")); // Simple fire-and-forget background job
-        await _firebusClint.RegisterJobAsync<SampleService>(svc => svc.FooBar("baz"), DateTime.UtcNow.AddHours(1)); // Fires after 1 hours from now
-        await _firebusClint.RegisterJobInQueueAsync<SampleService>(svc => svc.FooBar("baz"), "myqueue"); // Use qeueue named "myqueue"
+        await _firebusClient.RegisterJobAsync<SampleService>(svc => svc.FooBar("baz")); // Simple fire-and-forget background job
+        await _firebusClient.RegisterJobAsync<SampleService>(svc => svc.FooBar("baz"), DateTime.UtcNow.AddHours(1)); // Fires after 1 hours from now
+        await _firebusClient.RegisterJobInQueueAsync<SampleService>(svc => svc.FooBar("baz"), "myqueue"); // Use qeueue named "myqueue"
     }
 }
 ```
