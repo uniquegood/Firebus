@@ -5,7 +5,12 @@ VisualStudioVersion = 16.0.30717.126
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Firebus", "Firebus\Firebus.csproj", "{045F8A78-1565-4259-BB1F-F092165270BC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Firebus.AzureServiceBus", "Firebus.AzureServiceBus\Firebus.AzureServiceBus.csproj", "{19D40057-7E50-4D27-927A-12091DBEE064}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Firebus.AzureServiceBus", "Firebus.AzureServiceBus\Firebus.AzureServiceBus.csproj", "{19D40057-7E50-4D27-927A-12091DBEE064}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{8AAFB6BB-CF0A-473C-8C7B-0431E6DA9C83}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
