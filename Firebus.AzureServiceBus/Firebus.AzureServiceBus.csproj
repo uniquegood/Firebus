@@ -8,7 +8,7 @@
     <Authors>Yechan Lee</Authors>
     <Copyright>Copyright (c) 2020 Uniquegood Company All Rights Reserved</Copyright>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <Version>1.1.0</Version>
+    <Version>1.2.0</Version>
   </PropertyGroup>
 
   <ItemGroup>

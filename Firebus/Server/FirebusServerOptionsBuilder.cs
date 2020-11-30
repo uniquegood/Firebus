@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Firebus.Server.Filters;
 
-namespace Firebus
+namespace Firebus.Server
 {
     public class FirebusServerOptionsBuilder
     {
@@ -20,9 +17,21 @@ namespace Firebus
             return this;
         }
 
+        public FirebusServerOptionsBuilder AddBeforeExecuteJobFilter<TFilter>() where TFilter : IBeforeExecuteJobFilter, new()
+        {
+            Options.BeforeExecuteJobFilters.Add(new TFilter());
+            return this;
+        }
+
         public FirebusServerOptionsBuilder AddAfterExecuteJobFilter(IAfterExecuteJobFilter filter)
         {
             Options.AfterExecuteJobFilters.Add(filter);
+            return this;
+        }
+
+        public FirebusServerOptionsBuilder AddAfterExecuteJobFilter<TFilter>() where TFilter : IAfterExecuteJobFilter, new()
+        {
+            Options.AfterExecuteJobFilters.Add(new TFilter());
             return this;
         }
 
@@ -30,6 +39,14 @@ namespace Firebus
         {
             Options.BeforeExecuteJobFilters.Add(filter);
             Options.AfterExecuteJobFilters.Add(filter);
+            return this;
+        }
+
+        public FirebusServerOptionsBuilder AddExecuteJobFilter<TFilter>() where TFilter : IExecuteJobFilter, new()
+        {
+            var filterInstance = new TFilter();
+            Options.BeforeExecuteJobFilters.Add(filterInstance);
+            Options.AfterExecuteJobFilters.Add(filterInstance);
             return this;
         }
     }

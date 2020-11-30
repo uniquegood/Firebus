@@ -1,11 +1,10 @@
 ﻿using System;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Firebus
+namespace Firebus.Server
 {
-    public static class FirebusExtensions
+    public static class FirebusServerExtensions
     {
         public static IServiceCollection AddFirebusServer(this IServiceCollection services,
             Action<FirebusServerOptionsBuilder> setupAction)

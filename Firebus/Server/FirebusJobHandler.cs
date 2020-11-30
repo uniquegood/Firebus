@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Firebus
+namespace Firebus.Server
 {
     public class FirebusJobHandler
     {
@@ -25,7 +22,7 @@ namespace Firebus
 
             var contextAccessor = serviceProvider.GetService<JobExecutionContextAccessor>();
 
-            var context = new JobExecutionContext(serviceProvider, job.Items);
+            var context = new JobContext(job, serviceProvider);
             contextAccessor.Context = context;
 
             foreach (var filter in _serverOptions.BeforeExecuteJobFilters)
@@ -42,7 +39,7 @@ namespace Firebus
             }
         }
 
-        private async Task ExecuteJobAsync(FirebusJob job, JobExecutionContext context)
+        private async Task ExecuteJobAsync(FirebusJob job, JobContext context)
         {
             var type = Type.GetType(job.ServiceTypeName);
             if (type == null)

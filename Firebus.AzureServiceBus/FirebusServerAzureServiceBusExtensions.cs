@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Firebus.Server;
 
 namespace Firebus.AzureServiceBus
 {
-    public static class FirebusAzureServiceBusExtensions
+    public static class FirebusServerAzureServiceBusExtensions
     {
         public static FirebusServerOptionsBuilder UseAzureServiceBus(this FirebusServerOptionsBuilder builder,
-            AzureServiceBusOptions options)
+            AzureServiceBusServerOptions options)
         {
             foreach (var queue in options.QueueNames)
             {

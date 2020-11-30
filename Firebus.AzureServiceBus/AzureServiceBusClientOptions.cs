@@ -4,9 +4,9 @@ using System.Text;
 
 namespace Firebus.AzureServiceBus
 {
-    public class AzureServiceBusOptions
+    public class AzureServiceBusClientOptions
     {
         public string ConnectionString { get; set; }
-        public string[] QueueNames { get; set; }
+        public string DefaultQueueName { get; set; }
     }
 }

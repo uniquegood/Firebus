@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using Firebus.Server.Filters;
 
-namespace Firebus
+namespace Firebus.Server
 {
     public class FirebusServerOptions
     {
-        public ISet<IFirebusJobReceiver> JobReceivers { get; internal set; } = new HashSet<IFirebusJobReceiver>();
+        public ISet<IFirebusJobReceiver> JobReceivers { get; } = new HashSet<IFirebusJobReceiver>();
 
         internal ISet<IBeforeExecuteJobFilter> BeforeExecuteJobFilters { get; set; } = new HashSet<IBeforeExecuteJobFilter>();
         internal ISet<IAfterExecuteJobFilter> AfterExecuteJobFilters { get; set; } = new HashSet<IAfterExecuteJobFilter>();
