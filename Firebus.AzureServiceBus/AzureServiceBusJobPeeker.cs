@@ -26,15 +26,18 @@ namespace Firebus.AzureServiceBus
             var receiver = GetReceiver(queueName);
 
             const int maxCount = 100;
-            var lastSeqNum = 0;
+            long lastSeqNum = 0;
 
             List<Message> messages = new List<Message>();
             do
             {
                 var newMessages = await receiver.PeekBySequenceNumberAsync(lastSeqNum, maxCount);
                 messages.AddRange(newMessages);
+
                 if (newMessages.Count < maxCount)
                     break;
+
+                lastSeqNum = newMessages.Last().SystemProperties.SequenceNumber;
             } while (true);
 
             return messages
