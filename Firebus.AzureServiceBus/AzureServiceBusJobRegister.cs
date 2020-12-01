@@ -28,12 +28,7 @@ namespace Firebus.AzureServiceBus
 
             var queueName = (queueNameObj as string) ?? _defaultQueueName;
 
-            _queueClients.TryGetValue(queueName, out var queueClient);
-            if (queueClient == null)
-            {
-                queueClient = new QueueClient(_connectionString, queueName);
-                _queueClients.Add(queueName, queueClient);
-            }
+            var queueClient = GetQueueClient(queueName);
 
             await queueClient.SendAsync(new Message
             {
@@ -43,6 +38,18 @@ namespace Firebus.AzureServiceBus
                         new JsonSerializerSettings {TypeNameHandling = TypeNameHandling.All})),
                 ScheduledEnqueueTimeUtc = scheduledTimeUtc ?? default
             });
+        }
+
+        private QueueClient GetQueueClient(string queueName)
+        {
+            _queueClients.TryGetValue(queueName, out var queueClient);
+            if (queueClient == null)
+            {
+                queueClient = new QueueClient(_connectionString, queueName);
+                _queueClients.Add(queueName, queueClient);
+            }
+
+            return queueClient;
         }
     }
 }

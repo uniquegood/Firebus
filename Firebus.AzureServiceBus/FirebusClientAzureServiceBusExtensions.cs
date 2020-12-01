@@ -11,7 +11,7 @@ namespace Firebus.AzureServiceBus
         public static FirebusClientOptionsBuilder UseAzureServiceBus(this FirebusClientOptionsBuilder builder, AzureServiceBusClientOptions options)
         {
             var register = new AzureServiceBusJobRegister(options.ConnectionString, options.DefaultQueueName);
-            builder.Options.JobRegister = register;
+            builder.UseJobRegister(register);
 
             return builder;
         }

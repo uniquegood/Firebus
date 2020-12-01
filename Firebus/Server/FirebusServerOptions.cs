@@ -9,5 +9,7 @@ namespace Firebus.Server
 
         internal ISet<IBeforeExecuteJobFilter> BeforeExecuteJobFilters { get; set; } = new HashSet<IBeforeExecuteJobFilter>();
         internal ISet<IAfterExecuteJobFilter> AfterExecuteJobFilters { get; set; } = new HashSet<IAfterExecuteJobFilter>();
+
+        internal IFirebusExceptionHandler ExceptionHandler { get; set; }
     }
 }

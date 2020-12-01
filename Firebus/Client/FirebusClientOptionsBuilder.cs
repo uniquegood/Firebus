@@ -9,6 +9,11 @@ namespace Firebus.Client
     {
         public FirebusClientOptions Options { get; } = new FirebusClientOptions();
 
+        public void UseJobRegister(IFirebusJobRegister register)
+        {
+            Options.JobRegister = register;
+        }
+
 
         public FirebusClientOptionsBuilder AddBeforeRegisterJobFilter(IBeforeRegisterJobFilter filter)
         {

@@ -49,5 +49,13 @@ namespace Firebus.Server
             Options.AfterExecuteJobFilters.Add(filterInstance);
             return this;
         }
+
+        public FirebusServerOptionsBuilder SetExceptionHandler<THandler>()
+            where THandler : IFirebusExceptionHandler, new()
+        {
+            var handlerInstance = new THandler();
+            Options.ExceptionHandler = handlerInstance;
+            return this;
+        }
     }
 }

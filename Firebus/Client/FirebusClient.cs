@@ -61,12 +61,14 @@ namespace Firebus.Client
             var type = jobAction.Type.GenericTypeArguments[0].AssemblyQualifiedName;
             var methodCall = (MethodCallExpression) jobAction.Body;
             var args = methodCall.Arguments.Select(arg => arg.Evaluate()).ToArray();
+            var argTypes = methodCall.Arguments.Select(arg => arg.Type.AssemblyQualifiedName).ToArray();
 
             var job = new FirebusJob
             {
                 ServiceTypeName = type,
                 MethodName = methodCall.Method.Name,
-                Parameters = args
+                Parameters = args,
+                ParameterTypeNames = argTypes
             };
 
             return job;
