@@ -8,14 +8,11 @@ namespace Firebus.AzureServiceBus
     public static class FirebusManageAzureServiceBusExtensions
     {
         public static FirebusManageOptionsBuilder UseAzureServiceBus(this FirebusManageOptionsBuilder builder,
-            AzureServiceBusServerOptions options)
+            string connectionString)
         {
-            foreach (var queue in options.QueueNames)
-            {
-                var peeker = new AzureServiceBusJobPeeker(options.ConnectionString);
+            var peeker = new AzureServiceBusJobPeeker(connectionString);
 
-                builder.UseJobPeeker(peeker);
-            }
+            builder.UseJobPeeker(peeker);
 
             return builder;
         }
