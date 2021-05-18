@@ -46,7 +46,7 @@ namespace Firebus.AzureServiceBus
                 .Select(msg =>
                 {
                     var job = JsonConvert.DeserializeObject<FirebusJob>(Encoding.UTF8.GetString(msg.Body),
-                        new JsonSerializerSettings {TypeNameHandling = TypeNameHandling.All});
+                        new JsonSerializerSettings {TypeNameHandling = TypeNameHandling.None});
 
                     if (job.Items == null)
                     {

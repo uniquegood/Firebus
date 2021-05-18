@@ -9,7 +9,7 @@
     <Description>Invoke background job with queue services</Description>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <Version>1.4.0</Version>
-    <PackageReleaseNotes>Find overloaded methods with enum parameters</PackageReleaseNotes>
+    <PackageReleaseNotes>Add cancel registered job feature</PackageReleaseNotes>
     <RepositoryUrl>https://github.com/uniquegoodcompany/firebus</RepositoryUrl>
     <PackageProjectUrl>https://github.com/uniquegoodcompany/firebus</PackageProjectUrl>
   </PropertyGroup>

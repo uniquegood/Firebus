@@ -8,9 +8,12 @@
     <Authors>Yechan Lee</Authors>
     <Copyright>Copyright (c) 2020 Uniquegood Company All Rights Reserved</Copyright>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <Version>1.4.0</Version>
+    <Version>1.4.1</Version>
     <RepositoryUrl>https://github.com/uniquegoodcompany/firebus</RepositoryUrl>
     <PackageProjectUrl>https://github.com/uniquegoodcompany/firebus</PackageProjectUrl>
+    <PackageReleaseNotes>Add cancel registered job feature</PackageReleaseNotes>
+    <AssemblyVersion>1.4.1.0</AssemblyVersion>
+    <FileVersion>1.4.1.0</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>
