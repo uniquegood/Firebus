@@ -19,5 +19,10 @@ namespace Firebus.Manage
         {
             return await _peeker.GetAllRegisteredJobsAsync(queueName);
         }
+
+        public async Task CancelRegisteredJobAsync(string queueName, FirebusJob job)
+        {
+            await _peeker.CancelRegisteredJobAsync(queueName, job);
+        }
     }
 }

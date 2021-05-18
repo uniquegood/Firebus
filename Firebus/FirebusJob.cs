@@ -11,6 +11,6 @@ namespace Firebus
         public string MethodName { get; set; }
         public object[] Parameters { get; set; }
         public string[] ParameterTypeNames { get; set; }
-        public Dictionary<string, object> Items { get; set; }
+        public Dictionary<string, object> Items { get; set; } = new Dictionary<string, object>();
     }
 }

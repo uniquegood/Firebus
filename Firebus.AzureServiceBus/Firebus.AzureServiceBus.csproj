@@ -8,7 +8,7 @@
     <Authors>Yechan Lee</Authors>
     <Copyright>Copyright (c) 2020 Uniquegood Company All Rights Reserved</Copyright>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <Version>1.3.2</Version>
+    <Version>1.4.0</Version>
     <RepositoryUrl>https://github.com/uniquegoodcompany/firebus</RepositoryUrl>
     <PackageProjectUrl>https://github.com/uniquegoodcompany/firebus</PackageProjectUrl>
   </PropertyGroup>

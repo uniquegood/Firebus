@@ -8,5 +8,6 @@ namespace Firebus.Manage
     public interface IFirebusJobPeeker
     {
         Task<FirebusJob[]> GetAllRegisteredJobsAsync(string queueName);
+        Task CancelRegisteredJobAsync(string queueName, FirebusJob job);
     }
 }

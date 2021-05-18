@@ -13,6 +13,8 @@ namespace Firebus.AzureServiceBus
     public class AzureServiceBusJobPeeker : IFirebusJobPeeker
     {
         private static readonly Dictionary<string, MessageReceiver> _receivers = new Dictionary<string, MessageReceiver>();
+        private static readonly Dictionary<string, QueueClient> _queueClients = new Dictionary<string, QueueClient>();
+
         private readonly string _connectionString;
 
         public AzureServiceBusJobPeeker(string connectionString)
@@ -40,20 +42,56 @@ namespace Firebus.AzureServiceBus
                 lastSeqNum = newMessages.Last().SystemProperties.SequenceNumber;
             } while (true);
 
-            return messages
+            var jobs = messages
                 .Select(msg =>
-                    JsonConvert.DeserializeObject<FirebusJob>(Encoding.UTF8.GetString(msg.Body),
-                        new JsonSerializerSettings {TypeNameHandling = TypeNameHandling.All}))
+                {
+                    var job = JsonConvert.DeserializeObject<FirebusJob>(Encoding.UTF8.GetString(msg.Body),
+                        new JsonSerializerSettings {TypeNameHandling = TypeNameHandling.All});
+
+                    if (job.Items == null)
+                    {
+                        job.Items = new Dictionary<string, object>();
+                    }
+
+                    job.Items.Add("$sn", msg.SystemProperties.SequenceNumber);
+
+                    return job;
+                })
                 .ToArray();
+
+            return jobs;
+        }
+
+        public async Task CancelRegisteredJobAsync(string queueName, FirebusJob job)
+        {
+            var client = GetQueueClient(queueName);
+
+            if (job.Items == null || !job.Items.ContainsKey("$sn"))
+            {
+                throw new InvalidOperationException("The job has insufficient information");
+            }
+            await client.CancelScheduledMessageAsync((long) job.Items["$sn"]);
         }
 
         private MessageReceiver GetReceiver(string queueName)
         {
-            _receivers.TryGetValue(queueName, out var queueClient);
+            _receivers.TryGetValue(queueName, out var receiveClient);
+            if (receiveClient == null)
+            {
+                receiveClient = new MessageReceiver(_connectionString, queueName);
+                _receivers.Add(queueName, receiveClient);
+            }
+
+            return receiveClient;
+        }
+
+        private QueueClient GetQueueClient(string queueName)
+        {
+            _queueClients.TryGetValue(queueName, out var queueClient);
             if (queueClient == null)
             {
-                queueClient = new MessageReceiver(_connectionString, queueName);
-                _receivers.Add(queueName, queueClient);
+                queueClient = new QueueClient(_connectionString, queueName);
+                _queueClients.Add(queueName, queueClient);
             }
 
             return queueClient;
