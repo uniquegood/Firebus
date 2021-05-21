@@ -39,6 +39,7 @@ namespace Firebus.Client
         {
             var job = ExtractJob(jobAction);
             job.Items = items ?? new Dictionary<string, object>();
+            job.ScheduledTimeUtc = scheduledTimeUtc;
 
             var context = new JobContext(job, _serviceProvider);
 

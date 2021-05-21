@@ -12,5 +12,6 @@ namespace Firebus
         public object[] Parameters { get; set; }
         public string[] ParameterTypeNames { get; set; }
         public Dictionary<string, object> Items { get; set; } = new Dictionary<string, object>();
+        public DateTime? ScheduledTimeUtc { get; set; }
     }
 }
