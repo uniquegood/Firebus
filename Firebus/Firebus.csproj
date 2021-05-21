@@ -8,8 +8,8 @@
     <Authors>Yechan Lee</Authors>
     <Description>Invoke background job with queue services</Description>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <Version>1.4.0</Version>
-    <PackageReleaseNotes>Add cancel registered job feature</PackageReleaseNotes>
+    <Version>1.5.0</Version>
+    <PackageReleaseNotes>Add ScheduledTimeUtc in FirebusJob</PackageReleaseNotes>
     <RepositoryUrl>https://github.com/uniquegoodcompany/firebus</RepositoryUrl>
     <PackageProjectUrl>https://github.com/uniquegoodcompany/firebus</PackageProjectUrl>
   </PropertyGroup>
