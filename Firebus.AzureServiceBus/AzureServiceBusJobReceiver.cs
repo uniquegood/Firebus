@@ -37,7 +37,7 @@ namespace Firebus.AzureServiceBus
             var job = JsonConvert.DeserializeObject<FirebusJob>(Encoding.UTF8.GetString(message.Body),
                 new JsonSerializerSettings {TypeNameHandling = TypeNameHandling.All});
 
-            await _jobHandler.HandleJobAsync(job);
+            _jobHandler.HandleJobAsync(job);
         }
 
         public void RegisterJobHandler(FirebusJobHandler handler)
